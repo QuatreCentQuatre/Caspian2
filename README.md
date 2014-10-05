@@ -1,4 +1,4 @@
 Caspian2
 ========
 
-Caspian 2 PHP Framework
+BETA 1 soon
