@@ -1,0 +1,14 @@
+<?php
+
+require_once dirname(dirname(dirname(__FILE__))) . '/Caspian/Application.php';
+$app = new Caspian\Application;
+
+use Caspian\Utils\Test;
+
+class [NAME]Test extends Test
+{
+    public function __construct()
+    {
+        parent::__construct();
+    }
+}

@@ -1,0 +1,9 @@
+<?php
+
+class [name] extends \Caspian\Database\Model
+{
+    public function init()
+    {
+        // Your init code
+    }
+}

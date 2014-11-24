@@ -1,0 +1,11 @@
+<?php
+
+use Caspian\Controllers\[type];
+
+class [name]Controller extends [type]
+{
+    public function index()
+    {
+        // Your code
+    }
+}

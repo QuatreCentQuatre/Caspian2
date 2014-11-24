@@ -1,0 +1,12 @@
+patterns:
+    userid: (:param)         # (:param) = anything, (:any) = anything including '/', (:num) = numeric
+
+default:
+    uri:
+        fr: /
+        en: /en
+    action: index@default    # method@controller
+    secure: no               # use https?
+    cache: no                # cache page?
+    enforce: no              # enforce locale rule
+    ttl: 60                  # cache TTL
