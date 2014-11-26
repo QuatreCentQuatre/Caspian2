@@ -79,7 +79,9 @@ class Routing extends Base
                 $route->path = $path;
             }
 
-            self::$routes = array_merge(self::$routes, $data);
+            if (!empty((array)$data)) {
+                self::$routes = array_merge(self::$routes, $data);
+            }
         }
     }
 
