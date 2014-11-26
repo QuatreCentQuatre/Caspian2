@@ -79,8 +79,10 @@ class Routing extends Base
                 $route->path = $path;
             }
 
-            if (!empty((array)$data)) {
-                self::$routes = array_merge(self::$routes, $data);
+            $data_array = (array)$data;
+
+            if (!empty($data_array)) {
+                self::$routes = (object)array_merge((array)self::$routes, (array)$data);
             }
         }
     }
@@ -96,6 +98,34 @@ class Routing extends Base
      */
     public function find($url)
     {
+        /* Check for override route first */
+        if (!empty(self::$routes)) {
+            foreach (self::$routes as $key => $permalink) {
+                $matched = self::matchURI($permalink, '/*/');
+
+                if ($matched) {
+                    /* Catch all route (*) */
+                    if (!empty($matched['language'])) {
+                        $this->app->session->set('app_language', $matched['language']);
+                        Locale::setCurrentLocale($matched['language']);
+                    }
+
+                    /* this url is secure, if it's not on HTTPS, force it */
+                    if ($permalink->secure == 'yes') {
+                        if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on') {
+                            $url = str_replace("http://", "https://", $this->app->site_url) . $url;
+                            header('location: ' . $url);
+                            exit();
+                        }
+                    }
+
+                    $permalink->arguments = array();
+                    self::$current_path = $permalink->path;
+                    return $permalink;
+                }
+            }
+        }
+
         /* Static routes */
         if (!empty(self::$routes)) {
             foreach (self::$routes as $key => $permalink) {
@@ -144,7 +174,7 @@ class Routing extends Base
                         $the_rule = str_replace($targets, $replace, $the_uri);
 
                         if (preg_match('#^' . $the_rule . '$#', $url, $matches)) {
-                            $rule     = $the_rule;
+                            $rule = $the_rule;
                             $the_lang = $lang;
                             break;
                         }
@@ -189,32 +219,7 @@ class Routing extends Base
             }
         }
 
-        if (!empty(self::$routes)) {
-            foreach (self::$routes as $key => $permalink) {
-                $matched = self::matchURI($permalink, '/*/');
 
-                if ($matched) {
-                    /* Catch all route (*) */
-                    if (!empty($matched['language'])) {
-                        $this->app->session->set('app_language', $matched['language']);
-                        Locale::setCurrentLocale($matched['language']);
-                    }
-
-                    /* this url is secure, if it's not on HTTPS, force it */
-                    if ($permalink->secure == 'yes') {
-                        if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on') {
-                            $url = str_replace("http://", "https://", $this->app->site_url) . $url;
-                            header('location: ' . $url);
-                            exit();
-                        }
-                    }
-
-                    $permalink->arguments = array();
-                    self::$current_path = $permalink->path;
-                    return $permalink;
-                }
-            }
-        }
     }
 
     public function alternate($requested_route=null)
@@ -235,7 +240,7 @@ class Routing extends Base
      *
      * Try to match the current uri with one in the given route
      *
-     * @param   array   route array
+     * @param   object  route object
      * @param   string  current URI
      * @return  mixed   null if not matched, array with language value if matched
      * @access  public
@@ -291,7 +296,7 @@ class Routing extends Base
     /* Useful application API */
 
     /**
-     * @param $route
+     * @param   $route
      * @param   array    arguments to
      * @return  string   the url if it exists
      *
