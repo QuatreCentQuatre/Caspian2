@@ -27,19 +27,19 @@ database:
         host: kahana.mongohq.com
         port: 10015
         user: caspian
-        password: 68132140
+        password: xxxzxxxxx
         database: caspian2
 
     staging:
         host: kahana.mongohq.com
         port: 10015
         user: caspian
-        password: 68132140
+        password: xxxxxxx
         database: caspian2
 
     production:
         host: kahana.mongohq.com
         port: 10015
         user: caspian
-        password: 68132140
+        password: xxxxxx
         database: caspian2
