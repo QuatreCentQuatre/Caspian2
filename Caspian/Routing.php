@@ -47,6 +47,9 @@ class Routing extends Base
             }
 
             foreach ($data as $num => $route) {
+                foreach ($route->uri as $lang => $uri) {
+		            $route->uri->{$lang} = (substr($uri, -1, 1) == '/') ? substr($uri, 0, strlen($uri) - 1) : $uri;
+	            }
                 $route->path = $this->app->root_path . '/app';
             }
 
@@ -76,6 +79,9 @@ class Routing extends Base
             }
 
             foreach ($data as $num => $route) {
+		        foreach ($route->uri as $lang => $uri) {
+                    $route->uri->{$lang} = (substr($uri, -1, 1) == '/') ? substr($uri, 0, strlen($uri) - 1) : $uri;
+                }
                 $route->path = $path;
             }
 
@@ -94,6 +100,8 @@ class Routing extends Base
      */
     public function find($url)
     {
+        $url = (substr($url, -1, 1) == '/') ? substr($url, 0, strlen($url) - 1) : $url;
+
         /* Static routes */
         if (!empty(self::$routes)) {
             foreach (self::$routes as $key => $permalink) {
@@ -243,7 +251,7 @@ class Routing extends Base
     private static function matchURI($urilist, $uri)
     {
         foreach ($urilist->uri as $lang => $the_uri) {
-            if ($the_uri == $uri || $the_uri . '/' == $uri || $the_uri . '.html' == $uri || $the_uri . '.json' == $uri) {
+            if ($the_uri == $uri || $the_uri . '/' == $uri || $uri . '/' == $the_uri || $the_uri . '.html' == $uri || $the_uri . '.json' == $uri) {
                 if (stristr($uri, '.json')) {
                     self::$json_flag = true;
                 }
