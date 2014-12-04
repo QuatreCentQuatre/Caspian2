@@ -512,16 +512,16 @@ class Collection
                 if ($var != 'connection' && $var != 'query' && $var != 'collection' && $var != 'isGridFS' && $var != $key) {
                     $query[$var] = $value;
                 }
-
-                $query['modification_date'] = new \MongoDate(time());
-
-                $where = array($key => $this->{$key});
-                $this->collection->update($where, array('$set' => $query));
-
-                $app->events->trigger('db-update', $this, 'any');
-
-                return $this->_id;
             }
+            
+            $query['modification_date'] = new \MongoDate(time());
+
+            $where = array($key => $this->{$key});
+            $this->collection->update($where, array('$set' => $query));
+
+            $app->events->trigger('db-update', $this, 'any');
+
+            return $this->_id;
         }
     }
 
