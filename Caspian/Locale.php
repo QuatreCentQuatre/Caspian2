@@ -32,9 +32,9 @@ class Locale extends Base
 
         /* Language override */
         if (empty(self::$alternate_locale)) {
-            $app_file = dirname(__DIR__) . '/apps/locale/' . self::$current_locale . '.yaml';
+            $app_file = dirname(__DIR__) . '/app/locale/' . self::$current_locale . '.yaml';
         } else {
-            $app_file = dirname(__DIR__) . '/apps/locale/' . self::$alternate_locale . '.yaml';
+            $app_file = dirname(__DIR__) . '/app/locale/' . self::$alternate_locale . '.yaml';
         }
 
         /* Load app locale */
