@@ -1,0 +1,14 @@
+<div id="site-main" class="site-section notfound-section">
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="icon-notfound"></div>
+                    <h1><?php echo $this->app->locale->get('not-found.title'); ?></h1>
+                    <p><?php echo $this->app->locale->get('not-found.content'); ?></p>
+                    <a class="btn blue-button" href="<?php echo $this->app->helpers->url->getRouteURL('default'); ?>" title="<?php echo $this->app->locale->get('not-found.back-home'); ?>"><?php echo $this->app->locale->get('not-found.back-home'); ?></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

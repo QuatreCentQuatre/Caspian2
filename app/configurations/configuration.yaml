@@ -1,0 +1,65 @@
+# Application configuration
+#
+# Define the global behavior of the current application
+
+# Languages
+languages:
+    default: fr
+    available:
+        fr: francais
+        en: english
+
+localization:
+    fr: fr_CA
+    en: en_US
+
+# Development (for sessions, manager can be cookie or database)
+development:
+    anticaching: yes
+    session: cookie
+    debugging: yes
+
+# Performance
+performance:
+    html_cache: no
+    cache:
+        use: no
+        driver: redis                 # APC, Memcache, Redis
+        host: localhost
+        port: 6379                    # memcache: 11211, redis: 6379
+        application_key: caspian
+        dbindex: 0                    # Redis Only
+
+# CORS Support
+cors:
+    allow: "*"                        # * or http://domain.com or none
+    methods: [POST, GET]              # array with allowed methods 
+
+# General configurations
+# To generate application salt and key, go there : http://online-code-generator.com/generate-salt-random-string.php
+general:
+    timezone: America/Montreal
+    hash_salt: GENERATE ONE
+    crypt_key: GENERATE ONE
+    sitename: Caspian
+    is_reponsive: yes
+    allow_ie8: no
+
+# Emailing  (smtp, mail, gmail, sendgrid) (sendgrid sets the host, port, ssl automatically)
+emailing:
+    mode: mail
+    user: ""
+    password: ""
+    ssl: no
+    server: ""
+    port: 25
+    domain: caspian.com
+
+# Uploading  (Supported CDNs Rackspace, Amazon S3)
+uploading:
+    driver: local          # mongodb, local, rackspace, amazon
+    authentication:
+        user:   ""           # Required for Rackspace
+        key:    ""           # Required for Amazon and Rackspace
+        secret: ""           # Required for Amazon and Rackspace (tenant name for rackspace)
+        bucket: ""           # Required for Amazon and Rackspace  (bucket/container)

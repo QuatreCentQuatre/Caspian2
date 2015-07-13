@@ -1,0 +1,8 @@
+# Application configuration
+#
+# Define all the site environments depending on the domain
+
+environments:
+    development: [caspian-developpement.com]
+    staging:     [caspian-staging.com]
+    production:  [caspian-production.com]

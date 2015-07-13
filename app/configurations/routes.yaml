@@ -1,0 +1,17 @@
+# Application routing
+#
+# Define all the patterns and routes of the application
+
+#patterns:  # (:param) = anything, (:any) = anything including /, (:str) = string, (:num) = numeric, (:id) = mongoID
+#    slug:  (:param)
+
+
+default:
+    uri:
+        fr: /
+        en: /en/
+    action: index@default    # method@controller
+    secure: no               # use https?
+    cache: no                # cache page?
+    enforce: no              # enforce locale rule
+    ttl: 60                  # cache TTL
