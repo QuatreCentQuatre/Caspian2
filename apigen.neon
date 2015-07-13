@@ -1,6 +1,0 @@
-destination: ./docs
-source:
-	- ./Caspian/
-	
-skip-doc-path: ./vendor/*
-title: Caspian 2

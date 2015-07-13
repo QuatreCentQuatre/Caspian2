@@ -1,8 +1,0 @@
-<?php
-
-require_once dirname(dirname(__DIR__)) . '/Caspian/Application.php';
-
-$app     = new Caspian\Application;
-$console = new Caspian\Console;
-
-// Your code
