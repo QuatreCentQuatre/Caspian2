@@ -11,8 +11,6 @@
         "filp/whoops": "1.*",
         "sybio/image-workshop": "2.*",
         "nesbot/carbon": "dev-master",
-        "phpoffice/phpexcel": "dev-master",
-        "box/spout": "*",
         "firebase/php-jwt": "1.*",
         "mailchimp/mailchimp": "dev-master"
     },
