@@ -10,7 +10,7 @@
         "mobiledetect/mobiledetectlib": "2.*",
         "filp/whoops": "1.*",
         "sybio/image-workshop": "2.*",
-        "nesbot/carbon": "dev-master",,
+        "nesbot/carbon": "dev-master",
         "firebase/php-jwt": "1.*",
         "mailchimp/mailchimp": "dev-master"
     },
